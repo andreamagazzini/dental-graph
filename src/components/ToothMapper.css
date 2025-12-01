@@ -1,0 +1,477 @@
+.tooth-mapper-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.mapper-header {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mapper-header h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.mapper-header p {
+  color: #7f8c8d;
+  margin-bottom: 15px;
+}
+
+.mapper-stats {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  display: inline-block;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.mapper-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.mapper-controls button {
+  padding: 10px 20px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.mapper-controls button:hover:not(:disabled) {
+  background: #2980b9;
+  transform: translateY(-1px);
+}
+
+.mapper-controls button:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.mapper-controls .export-btn {
+  background: #27ae60;
+}
+
+.mapper-controls .export-btn:hover:not(:disabled) {
+  background: #229954;
+}
+
+.mapper-main {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.mapper-image-section {
+  flex: 1;
+}
+
+.mapper-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+.mapper-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+}
+
+.tooth-marker {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: #e74c3c;
+  border: 3px solid white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.tooth-marker:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 11;
+}
+
+.tooth-marker.selected {
+  background: #3498db;
+  border-color: #2980b9;
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.3);
+  z-index: 12;
+}
+
+.tooth-marker.mapped {
+  background: #27ae60;
+  border-color: #229954;
+}
+
+.tooth-marker.mapped.selected {
+  background: #229954;
+}
+
+.marker-number {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+}
+
+.marker-check {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #27ae60;
+  color: white;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.mapper-control-panel {
+  flex: 0 0 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.assignment-section {
+  margin-bottom: 20px;
+}
+
+.assignment-section label {
+  display: block;
+  margin-bottom: 8px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.tooth-select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.tooth-select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.assigned-tooth-info {
+  margin-top: 10px;
+  padding: 10px;
+  background: #e8f5e9;
+  border-radius: 4px;
+  color: #2e7d32;
+  font-size: 14px;
+}
+
+.coordinate-label {
+  font-size: 1rem;
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+.tooth-assignment {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.tooth-assignment h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.tooth-info-box {
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border-left: 4px solid #3498db;
+}
+
+.tooth-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3498db;
+  margin-bottom: 8px;
+}
+
+.tooth-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.tooth-quadrant {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.tooth-index {
+  font-size: 0.85rem;
+  color: #95a5a6;
+  padding-top: 8px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.image-input-section {
+  margin-bottom: 15px;
+}
+
+.image-input-section label {
+  display: block;
+  margin-bottom: 8px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.image-name-select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.image-name-select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.input-hint {
+  font-size: 12px;
+  color: #7f8c8d;
+  margin-top: 5px;
+}
+
+.preview-image {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.preview-image img {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 4px;
+  border: 2px solid #e0e0e0;
+}
+
+.preview-error {
+  color: #e74c3c;
+  font-size: 14px;
+  padding: 20px;
+}
+
+.assignment-actions {
+  margin-top: 15px;
+}
+
+.clear-btn {
+  padding: 8px 16px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.clear-btn:hover:not(:disabled) {
+  background: #c0392b;
+}
+
+.clear-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.no-selection {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 40px 20px;
+  text-align: center;
+  color: #95a5a6;
+  font-style: italic;
+}
+
+.mappings-list {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.mappings-list h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.no-mappings {
+  text-align: center;
+  color: #95a5a6;
+  padding: 40px 20px;
+  font-style: italic;
+}
+
+.mappings-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mapping-item {
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: auto auto 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.mapping-coordinate {
+  background: #95a5a6;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.mapping-item:hover {
+  background: #e8f4f8;
+  border-color: #3498db;
+}
+
+.mapping-item.active {
+  background: #d5e8f4;
+  border-color: #2980b9;
+}
+
+.mapping-number {
+  background: #3498db;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.mapping-name {
+  flex: 1;
+  color: #2c3e50;
+  font-weight: 500;
+  min-width: 0;
+}
+
+.mapping-quadrant {
+  font-size: 11px;
+  color: #7f8c8d;
+  font-style: italic;
+  min-width: 80px;
+  text-align: right;
+}
+
+.mapping-image {
+  color: #27ae60;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.mapping-remove {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.mapping-remove:hover {
+  background: #c0392b;
+}
+
+@media (max-width: 1024px) {
+  .mapper-main {
+    flex-direction: column;
+  }
+
+  .mapper-control-panel {
+    flex: 1;
+    max-width: 100%;
+  }
+}
