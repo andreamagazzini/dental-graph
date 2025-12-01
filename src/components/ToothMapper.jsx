@@ -259,7 +259,7 @@ const ToothMapper = () => {
           <div className="mapper-image-wrapper">
             <img
               ref={imageRef}
-              src="/dental-schema.png"
+              src={`${import.meta.env.BASE_URL}dental-schema.png`}
               alt="Dental chart"
               className="mapper-image"
               onLoad={handleImageLoad}

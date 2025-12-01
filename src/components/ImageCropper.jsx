@@ -155,7 +155,7 @@ const ImageCropper = () => {
           >
             <img
               ref={imageRef}
-              src="/dental-schema_full.png"
+              src={`${import.meta.env.BASE_URL}dental-schema_full.png`}
               alt="Dental schema"
               className="cropper-image"
               onLoad={handleImageLoad}

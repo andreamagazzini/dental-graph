@@ -77,7 +77,7 @@ const CoordinatePicker = () => {
           <div className="mouth-image-wrapper-inner">
             <img
               ref={imageRef}
-              src="/dental-schema.png"
+              src={`${import.meta.env.BASE_URL}dental-schema.png`}
               alt="Dental chart"
               className="mouth-image"
               onLoad={handleImageLoad}

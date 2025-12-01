@@ -230,12 +230,15 @@ const DentalChart = () => {
     setSelectedTooth(tooth)
   }
 
+  // Base path for assets (Vite provides this automatically)
+  const basePath = import.meta.env.BASE_URL
+
   // Get the image file path for a tooth based on the mapping
   const getToothImagePath = (tooth) => {
     const toothNumber = tooth.toothNumber
     const imageName = imageMapping[toothNumber]
     if (imageName) {
-      return `/${imageName}.png`
+      return `${basePath}${imageName}.png`
     }
     return null
   }
@@ -243,12 +246,13 @@ const DentalChart = () => {
   // Get the tooth type image path
   const getToothTypeImagePath = (toothType) => {
     const typeMap = {
-      'incisor': '/incisor.png',
-      'canine': '/canine.png',
-      'premolar': '/premolar.png',
-      'molar': '/molar.png'
+      'incisor': 'incisor.png',
+      'canine': 'canine.png',
+      'premolar': 'premolar.png',
+      'molar': 'molar.png'
     }
-    return typeMap[toothType] || null
+    const fileName = typeMap[toothType]
+    return fileName ? `${basePath}${fileName}` : null
   }
 
   return (
@@ -259,7 +263,7 @@ const DentalChart = () => {
             {/* Mouth image - already cropped, no CSS cropping needed */}
             <img
               ref={imageRef}
-              src="/dental-schema.png"
+              src={`${import.meta.env.BASE_URL}dental-schema.png`}
               alt="Dental chart showing all teeth"
               className="mouth-image"
               onLoad={handleFullImageLoad}
