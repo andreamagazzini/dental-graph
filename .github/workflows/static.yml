@@ -50,6 +50,13 @@ jobs:
         env:
           NODE_ENV: production
       
+      - name: Verify build output
+        run: |
+          echo "Build output structure:"
+          ls -la dist/
+          echo "Assets folder:"
+          ls -la dist/assets/ || echo "No assets folder found"
+      
       - name: Setup Pages
         uses: actions/configure-pages@v5
       
