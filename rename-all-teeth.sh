@@ -33,3 +33,4 @@ echo ""
 echo "Renaming complete! Checking results..."
 ls -la *-upper.png *-lower.png 2>/dev/null | wc -l | xargs echo "Total renamed files:"
 
+

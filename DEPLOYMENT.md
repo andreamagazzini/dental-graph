@@ -43,3 +43,4 @@
 - The base path is set to `/dental-graph/` in `vite.config.js`
 - If your repository name is different, update the `base` path in `vite.config.js`
 - The site will be available at: `https://YOUR_USERNAME.github.io/dental-graph/`
+

@@ -188,9 +188,14 @@ const DentalChart = () => {
         height: naturalHeight
       })
       
-      // Image is already cropped, so dimensions match the displayed image
-      const displayedWidth = imageRef.current.offsetWidth || naturalWidth
-      const displayedHeight = naturalHeight
+      // Calculate displayed dimensions based on actual rendered size
+      // Use getBoundingClientRect for accurate mobile dimensions
+      const rect = imageRef.current.getBoundingClientRect()
+      const displayedWidth = rect.width || imageRef.current.offsetWidth || naturalWidth
+      
+      // Calculate displayed height based on aspect ratio
+      const aspectRatio = naturalHeight / naturalWidth
+      const displayedHeight = displayedWidth * aspectRatio
       
       setImageDimensions({
         width: displayedWidth,
@@ -204,10 +209,15 @@ const DentalChart = () => {
   useEffect(() => {
     const updateDimensions = () => {
       if (imageRef.current && fullImageDimensions.width > 0) {
-        const displayedWidth = imageRef.current.offsetWidth || fullImageDimensions.width
-        const displayedHeight = fullImageDimensions.height
+        // Use getBoundingClientRect for accurate dimensions on mobile
+        const rect = imageRef.current.getBoundingClientRect()
+        const displayedWidth = rect.width || imageRef.current.offsetWidth || fullImageDimensions.width
         
-        if (displayedWidth > 0) {
+        // Calculate displayed height based on aspect ratio
+        const aspectRatio = fullImageDimensions.height / fullImageDimensions.width
+        const displayedHeight = displayedWidth * aspectRatio
+        
+        if (displayedWidth > 0 && displayedHeight > 0) {
           setImageDimensions({
             width: displayedWidth,
             height: displayedHeight
@@ -220,9 +230,13 @@ const DentalChart = () => {
     // Small delay to ensure layout is complete
     const timer = setTimeout(updateDimensions, 100)
     window.addEventListener('resize', updateDimensions)
+    // Also listen for orientation changes on mobile
+    window.addEventListener('orientationchange', updateDimensions)
+    
     return () => {
       clearTimeout(timer)
       window.removeEventListener('resize', updateDimensions)
+      window.removeEventListener('orientationchange', updateDimensions)
     }
   }, [fullImageDimensions])
 
@@ -287,7 +301,13 @@ const DentalChart = () => {
           </div>
           {/* Always visible coordinate markers */}
           {imageLoaded && imageDimensions.width > 0 && (
-            <div className="coordinate-markers">
+            <div 
+              className="coordinate-markers"
+              style={{
+                width: `${imageDimensions.width}px`,
+                height: `${imageDimensions.height}px`
+              }}
+            >
               {teeth.map((tooth, index) => {
                 const x = tooth.position.x * imageDimensions.width
                 const y = tooth.position.y * imageDimensions.height
@@ -305,6 +325,10 @@ const DentalChart = () => {
                     onClick={() => handleToothClick(tooth)}
                     onMouseEnter={() => setHoveredTooth(tooth)}
                     onMouseLeave={() => setHoveredTooth(null)}
+                    onTouchStart={() => {
+                      setHoveredTooth(tooth)
+                      handleToothClick(tooth)
+                    }}
                     title={`Tooth ${tooth.toothNumber}: ${tooth.name} (${tooth.quadrant})`}
                   />
                 )
@@ -313,7 +337,13 @@ const DentalChart = () => {
           )}
           {/* Clickable areas positioned exactly on each tooth */}
           {imageLoaded && imageDimensions.width > 0 && (
-            <div className="tooth-click-areas">
+            <div 
+              className="tooth-click-areas"
+              style={{
+                width: `${imageDimensions.width}px`,
+                height: `${imageDimensions.height}px`
+              }}
+            >
               {teeth.map((tooth) => {
                 // Calculate position and size based on the displayed (cropped) image dimensions
                 const x = tooth.position.x * imageDimensions.width
@@ -335,6 +365,10 @@ const DentalChart = () => {
                     onClick={() => handleToothClick(tooth)}
                     onMouseEnter={() => setHoveredTooth(tooth)}
                     onMouseLeave={() => setHoveredTooth(null)}
+                    onTouchStart={() => {
+                      setHoveredTooth(tooth)
+                      handleToothClick(tooth)
+                    }}
                     title={tooth.name}
                   />
                 )
